@@ -8,6 +8,12 @@ import {
 } from 'typeorm';
 import { User } from '../user/user.entity';
 
+export enum ApplicationStatus {
+  Pending = 'pending',
+  Accepted = 'accepted',
+  Rejected = 'rejected',
+}
+
 @Entity()
 export class Application {
   @PrimaryGeneratedColumn()
@@ -22,8 +28,12 @@ export class Application {
   @Column({ nullable: true })
   resumeUrl?: string; // 첨부된 이력서 URL (선택)
 
-  @Column({ default: 'pending' })
-  status: string; // 지원 상태 (예: 'pending', 'accepted', 'rejected')
+  @Column({
+    default: ApplicationStatus.Pending,
+    type: 'enum',
+    enum: ApplicationStatus,
+  })
+  status: ApplicationStatus; // 지원 상태 (예: 'pending', 'accepted', 'rejected')
 
   @CreateDateColumn()
   createdAt: Date; // 지원 생성 날짜
