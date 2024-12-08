@@ -89,6 +89,32 @@ export class UserService {
     return this.jwtService.sign(payload);
   }
 
+  // 비밀번호 변경
+  async changePassword(
+    userId: number,
+    currentPassword: string,
+    newPassword: string,
+  ): Promise<string> {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+
+    if (!user) {
+      throw new UnauthorizedException('사용자를 찾을 수 없습니다.');
+    }
+
+    // 현재 비밀번호 확인
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      throw new UnauthorizedException('현재 비밀번호가 일치하지 않습니다.');
+    }
+
+    // 새로운 비밀번호 저장
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    await this.userRepository.save(user);
+
+    return '비밀번호가 성공적으로 변경되었습니다.';
+  }
+
   // 회원 정보 수정
   async updateNickname(userId: number, newNickname: string): Promise<User> {
     const user = await this.userRepository.findOne({ where: { id: userId } });

@@ -7,9 +7,11 @@ import { CompanyModule } from './company/company.module';
 import { UserModule } from './user/user.module';
 import { ApplicationModule } from './application/application.module';
 import { BookmarkModule } from './bookmark/bookmark.module';
+import { JobModule } from './jobs/jobs.module';
 import { User } from './user/user.entity';
 import { Bookmark } from './bookmark/bookmark.entity';
 import { Application } from './application/application.entity';
+import { Job } from './jobs/jobs.entity';
 
 @Module({
   imports: [
@@ -17,14 +19,15 @@ import { Application } from './application/application.entity';
     UserModule,
     ApplicationModule,
     BookmarkModule,
+    JobModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
       port: 3306,
-      username: 'root',
+      username: 'WSD3',
       password: '1234',
       database: 'company',
-      entities: [Company, User, Application, Bookmark],
+      entities: [Company, User, Application, Bookmark, Job],
       synchronize: true,
     }),
   ],
