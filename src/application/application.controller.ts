@@ -20,7 +20,7 @@ import { ApplicationService } from './application.service';
 import { CreateApplicationDto, ApplicationFilterDto } from './application.dto';
 import { JwtAuthGuard } from '../user/jwt/user.jwt.guard';
 
-@ApiTags('지원 관리') // Swagger에서 이 컨트롤러는 "지원 관리" 섹션에 표시됩니다.
+@ApiTags('지원 관리')
 @ApiBearerAuth() // JWT 인증을 사용하는 엔드포인트에 적용
 @Controller('applications')
 @UseGuards(JwtAuthGuard)
