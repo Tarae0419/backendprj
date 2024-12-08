@@ -2,12 +2,15 @@ import {
   BeforeInsert,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, Length } from 'class-validator';
 import * as bcrypt from 'bcrypt';
+import { Application } from '../application/application.entity';
+import { Bookmark } from '../bookmark/bookmark.entity';
 
 @Unique(['email'])
 @Entity()
@@ -63,4 +66,10 @@ export class User {
   @Length(3, 64)
   @Column({ type: 'varchar', length: 64 })
   nickname: string;
+
+  @OneToMany(() => Application, (application) => application.user)
+  applications: Application[];
+
+  @OneToMany(() => Bookmark, (bookmark) => bookmark.user)
+  bookmarks: Bookmark[];
 }

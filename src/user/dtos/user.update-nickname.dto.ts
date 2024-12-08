@@ -1,9 +1,6 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsString, Length } from 'class-validator';
+import { PartialType, PickType } from '@nestjs/swagger';
+import { UserDto } from './user.dto';
 
-export class UpdateNicknameDto {
-  @ApiProperty({ description: 'New nickname for the user' })
-  @IsString()
-  @Length(3, 64) // 닉네임은 최소 3자, 최대 64자
-  nickname: string;
-}
+export class UpdateNicknameDto extends PartialType(
+  PickType(UserDto, ['nickname'] as const),
+) {}
