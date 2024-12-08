@@ -4,7 +4,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { FindListAndCountCompanyDto } from './dtos/find-list-and-count-company.dto';
 
 @Controller('companies')
-@ApiTags('공지사항')
+@ApiTags('회사')
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 

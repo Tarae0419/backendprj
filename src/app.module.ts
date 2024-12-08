@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { AppController } from './app.controller';
 import { Company } from './company/entities/company.entity';
 import { CompanyModule } from './company/company.module';
+import { User } from './user/user.entity';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { CompanyModule } from './company/company.module';
       username: 'root',
       password: '1234',
       database: 'company',
-      entities: [Company],
+      entities: [Company, User],
       synchronize: true,
     }),
   ],
