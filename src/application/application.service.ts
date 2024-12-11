@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Application } from './application.entity';
+import { Application, ApplicationStatus } from './application.entity';
 import { User } from '../user/user.entity';
 
 @Injectable()
@@ -73,11 +73,11 @@ export class ApplicationService {
       throw new NotFoundException('Application not found');
     }
 
-    if (application.status !== 'pending') {
+    if (application.status !== ApplicationStatus.Pending) {
       throw new ConflictException('Cannot cancel this application');
     }
 
-    application.status = 'cancelled';
+    application.status = ApplicationStatus.Cancelled;
     return this.applicationRepository.save(application);
   }
 }
