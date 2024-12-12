@@ -23,6 +23,8 @@ sudo apt-get install -y nodejs
 - 로컬 기준 : http://localhost:3000/api 
 - 서버 기준 : http://116.198.66.75:18103/api
 
+***
+
 # crawler
 
 1. python 설치
