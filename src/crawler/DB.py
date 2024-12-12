@@ -21,7 +21,7 @@ class Job(Base):
     updatedAt = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)  # 공고 수정 날짜
 
 # 데이터베이스 설정
-DATABASE_URL = "mysql+pymysql://WSD3:1234@localhost/company"
+DATABASE_URL = "mysql+pymysql://WSD3:1234@113.198.66.75:10103/company"
 engine = create_engine(DATABASE_URL, echo=True)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

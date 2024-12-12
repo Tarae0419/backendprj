@@ -21,7 +21,7 @@ import { LoggerMiddleware } from './middleware/logging.middleware';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: '113.198.66.75',
-      port: 13103,
+      port: 10103,
       username: 'WSD3',
       password: '1234',
       database: 'company',
